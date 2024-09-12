@@ -26,3 +26,6 @@ SELECT * FROM groceries WHERE aisle < 8 ORDER BY aisle;
 SELECT SUM(quantity) FROM groceries;
 -- get the most bought item
 SELECT MAX(quantity) FROM groceries;
+
+-- Get total quantity for each supermarket's aisle
+SELECT aisle, SUM(quantity) FROM groceries GROUP BY aisle;
