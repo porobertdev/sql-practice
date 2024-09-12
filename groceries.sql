@@ -21,3 +21,8 @@ SELECT name FROM groceries;
 
 -- Filter and Order results
 SELECT * FROM groceries WHERE aisle < 8 ORDER BY aisle;
+
+-- Aggregate aka Math Functions
+SELECT SUM(quantity) FROM groceries;
+-- get the most bought item
+SELECT MAX(quantity) FROM groceries;
