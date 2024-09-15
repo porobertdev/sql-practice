@@ -1,5 +1,5 @@
 CREATE TABLE users (user_id INTEGER PRIMARY KEY, username TEXT, email TEXT);
-CREATE TABLE posts (post_id INTEGER PRIMARY KEY, post TEXT, date TEXT);
+CREATE TABLE posts (post_id INTEGER PRIMARY KEY, user_id INTEGER, post TEXT, date TEXT);
 
 -- USERS
 INSERT INTO users VALUES(0, 'porobertdev', 'porobertdev@gmail.com');
@@ -8,10 +8,10 @@ INSERT INTO users VALUES(2, 'john', 'john@gmail.com');
 INSERT INTO users VALUES(3, 'Mr. Cat', NULL);
 
 -- POSTS
-INSERT INTO posts VALUES(0, 'Programming is cool bro', '14 Sep 2024');
-INSERT INTO posts VALUES(1, 'Today I started the #100DaysOfCode Challenge with The Odin Project :)', 'April 2023');
-INSERT INTO posts VALUES(10, 'This post is really stupid', '10 August 2033');
-INSERT INTO posts VALUES(3, 'This is the fourth post added into the database', '4 July 2020');
+INSERT INTO posts VALUES(0, 0, 'Programming is cool bro', '14 Sep 2024');
+INSERT INTO posts VALUES(1, 0, 'Today I started the #100DaysOfCode Challenge with The Odin Project :)', 'April 2023');
+INSERT INTO posts VALUES(10, 1, 'This post is really stupid', '10 August 2033');
+INSERT INTO posts VALUES(3, 2, 'This is the fourth post added into the database', '4 July 2020');
 
 
 -- JOINS
@@ -38,3 +38,10 @@ ON users.user_id = posts.post_id;
 SELECT *
 FROM users FULL OUTER JOIN posts
 ON users.user_id = posts.post_id;
+
+-- Display the COUNT of posts for EACH user
+SELECT users.user_id AS user_id, username, COUNT(post_id) AS total_posts
+FROM users INNER JOIN posts
+ON users.user_id = posts.user_id
+GROUP BY username
+ORDER BY user_id;
